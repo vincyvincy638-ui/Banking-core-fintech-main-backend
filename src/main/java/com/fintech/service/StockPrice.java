@@ -1,4 +1,4 @@
-package com.fintech.entity;
+package com.fintech.service;
 
 public class StockPrice {
 

@@ -11,25 +11,15 @@ public class AuditLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String methodName;
+    private String username; // user who performed the action
+    private String action; // BUY, SELL, LOGIN, TRANSFER, etc.
+    private String description; // method info / error / details
+    private LocalDateTime timestamp; // auto-set when record created
 
-    @Column(columnDefinition = "TEXT")
-    private String parameters;
-
-    @Column(columnDefinition = "TEXT")
-    private String returnValue;
-
-    private LocalDateTime timestamp;
-
-    // Constructors
-    public AuditLog() {
-    }
-
-    public AuditLog(String methodName, String parameters, String returnValue, LocalDateTime timestamp) {
-        this.methodName = methodName;
-        this.parameters = parameters;
-        this.returnValue = returnValue;
-        this.timestamp = timestamp;
+    // Auto set timestamp
+    @PrePersist
+    public void onCreate() {
+        this.timestamp = LocalDateTime.now();
     }
 
     // Getters & Setters
@@ -41,28 +31,28 @@ public class AuditLog {
         this.id = id;
     }
 
-    public String getMethodName() {
-        return methodName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getParameters() {
-        return parameters;
+    public String getAction() {
+        return action;
     }
 
-    public void setParameters(String parameters) {
-        this.parameters = parameters;
+    public void setAction(String action) {
+        this.action = action;
     }
 
-    public String getReturnValue() {
-        return returnValue;
+    public String getDescription() {
+        return description;
     }
 
-    public void setReturnValue(String returnValue) {
-        this.returnValue = returnValue;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getTimestamp() {

@@ -1,6 +1,6 @@
 package com.fintech.service;
 
-import com.fintech.entity.StockPrice;
+import com.fintech.service.StockService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
